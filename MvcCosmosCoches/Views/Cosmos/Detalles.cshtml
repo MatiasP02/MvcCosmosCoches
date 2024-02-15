@@ -1,0 +1,92 @@
+﻿@model MvcCosmosCoches.Models.Coche
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Coche</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VelocidadMaxima)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VelocidadMaxima)
+        </dd>
+    </dl>
+
+        <table class="table table-bordered" id="tablaMotor" style="display:none;">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">Motor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Tipo</th>
+                <td>@(Model.Motor?.Tipo ?? "null")</td>
+            </tr>
+            <tr>
+                <th scope="row">Caballos</th>
+                <td>@(Model.Motor?.Caballos.ToString() ?? "null")</td>
+
+            </tr>
+                <tr>
+                    <th scope="row">Cilindrada</th>
+                <td>@(Model.Motor?.Cilindrada.ToString() ?? "null")</td>
+
+                </tr>
+                
+                <tr>
+                    <th scope="row">Turbo</th>
+                <td>@(Model.Motor?.Turbo.ToString() ?? "null")</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+
+</div>
+<div>
+    @Html.ActionLink("Edit", "Editar", new { id = Model.Id }) |
+    @Html.ActionLink("Atras", "ListCoches", new { /* id = Model.PrimaryKey */ })
+</div>
+
+@section Scripts {
+    @{
+        bool isMotorNull = Model.Motor == null;
+    }
+
+    <script>
+        var isMotorNull = @Html.Raw(isMotorNull.ToString().ToLower());
+        var tablaMotor = document.getElementById("tablaMotor");
+
+        if (isMotorNull) {
+            tablaMotor.style.display = "none";
+        } else {
+            tablaMotor.style.display = "block";
+        }
+
+    </script>
+}

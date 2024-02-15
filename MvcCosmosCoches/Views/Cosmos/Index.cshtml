@@ -1,0 +1,12 @@
+﻿@{ ViewData["Title"] = "Index"; }
+
+<div class="text-center">
+    <a asp-action="ListCoches" asp-controller="Cosmos" class="btn btn-dark">Listado de coches</a>
+    <br />
+    <br />
+    <form method="post">
+        <button type="submit" name="accion" value="iniciar" class="btn btn-info">Crear BD y Collection</button>
+    </form>
+
+    <h1 class="display-4" style="color:green">@ViewBag.mensaje</h1>
+</div>
